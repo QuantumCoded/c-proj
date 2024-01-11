@@ -12,14 +12,13 @@
       };
     in
     {
-      packages.x86_64-linux.stag-render = pkgs.callPackage ./stag-render { };
-
       devShells.x86_64-linux.default = pkgs.mkShell {
+        LIBRARY_PATH = "${pkgs.ncurses.dev}/lib";
         nativeBuildInputs = with pkgs; [
+          clang-tools
           gcc
           just
-          libclang
-          ncurses
+          ncurses.dev
         ];
       };
     };
