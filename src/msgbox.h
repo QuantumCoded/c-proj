@@ -3,7 +3,7 @@
 
 #include <ncurses.h>
 
-#define MSGBOX_LINES 256
+#define MSGBOX_LINES 20
 
 typedef struct {
     char* lines[MSGBOX_LINES];

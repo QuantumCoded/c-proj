@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include <stdlib.h>
 #include "msgbox.h"
 #include "panel.h"
 
@@ -8,6 +9,7 @@ void game_loop() {
     PANEL panel;
     GAMESTATE state;
 
+    // TODO: this should be loaded from a save state
     state.hp = 10;
     state.max_hp = 100;
     state.mp = 50;
@@ -18,7 +20,11 @@ void game_loop() {
     init_msgbox(&msgbox);
     init_panel(&panel);
 
-    write_line(&msgbox, "Welcome to My Game!");
+    for (int i = 0; i < 20; i++) {
+        char* buf = malloc(50);
+        sprintf(buf, "Thing %d", i);
+        write_line(&msgbox, buf);
+    }
 
     char ch;
     while((ch = getch()) != 'q')

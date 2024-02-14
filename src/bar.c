@@ -3,21 +3,12 @@
 
 #include "bar.h"
 #include "panel.h"
-
-int num_digits(int n) {
-    if (n == 0) {
-        return 1;
-    } else {
-        return floor(log10(n)) + 1;
-    }
-}
+#include "utils.h"
 
 void draw_bar(BAR* bar) {
     char bar_text[BAR_WIDTH + 1];
 
-    double fill_percent = bar->value <= bar->max
-        ? (double)bar->value / (double)bar->max
-        : 1;
+    double fill_percent = (double)min(bar->value, bar->max) / (double)bar->max;
 
     int offset;
     int value_len = num_digits(bar->value);
