@@ -3,13 +3,19 @@
 
 #include <ncurses.h>
 
-#define MSGBOX_LINES 20
+#define MSGBOX_LINES 256
 
 typedef struct {
-    char* lines[MSGBOX_LINES];
+    char* messages[MSGBOX_LINES];
+    int count;
+} MSGQUEUE;
+
+typedef struct {
+    MSGQUEUE* queue;
     int cols;
     int lines_wrote;
     int scroll;
+    int max_scroll;
     WINDOW* pad;
 } MSGBOX;
 

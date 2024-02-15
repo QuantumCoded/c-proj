@@ -6,6 +6,7 @@
 
 void game_loop() {
     MSGBOX msgbox;
+    MSGQUEUE msgqueue;
     PANEL panel;
     GAMESTATE state;
 
@@ -16,11 +17,12 @@ void game_loop() {
     state.max_mp = 100;
 
     msgbox.cols = COLS - PANEL_WIDTH - 1;
+    msgbox.queue = &msgqueue;
 
     init_msgbox(&msgbox);
     init_panel(&panel);
 
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 43; i++) {
         char* buf = malloc(50);
         sprintf(buf, "Thing %d", i);
         write_line(&msgbox, buf);
